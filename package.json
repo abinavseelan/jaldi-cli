@@ -1,0 +1,22 @@
+{
+  "name": "jaldi-cli",
+  "version": "0.1.0",
+  "description": "CLI utility to quickly bootstrap projects. ⚡️",
+  "main": "jaldi.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abinavseelan/jaldi-cli.git"
+  },
+  "keywords": [
+    "cli"
+  ],
+  "author": "Abinav Seelan <abinav.n.seelan@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abinavseelan/jaldi-cli/issues"
+  },
+  "homepage": "https://github.com/abinavseelan/jaldi-cli#readme"
+}
