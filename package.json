@@ -2,9 +2,9 @@
   "name": "jaldi-cli",
   "version": "0.1.0",
   "description": "CLI utility to quickly bootstrap projects. ⚡️",
-  "main": "jaldi.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "index.js",
+  "bin": {
+    "jaldi": "./index.js"
   },
   "repository": {
     "type": "git",
