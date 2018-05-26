@@ -1,5 +1,5 @@
 {
-  "name": "jaldi-cli",
+  "name": "jaldi",
   "version": "0.1.0",
   "description": "CLI utility to quickly bootstrap projects. ⚡️",
   "main": "index.js",

@@ -50,7 +50,7 @@ function clone() {
     console.log("\n📦  Cloning starter project");
 
     return new Promise((resolve, reject) => {
-        exec(`git clone ${config.default} ${path} && echo 'done'`, (err, stdout, stderr) => {
+        exec(`git clone ${config.default} ${path} && echo '✅  Done.'`, (err, stdout, stderr) => {
             if (err) {
                 console.log("\n😕  Oops. Something went wrong. Please check the error logs below and re-try the command.");
 
@@ -200,6 +200,7 @@ checkGit()
     .then(makeInitialCommit)
     .then(() => {
         console.log("🚀   All set up!");
+        console.log(`\nIf there are any issues with the cloned starter project, please raise an issue at ${config.default}`);
     })
     .catch(() => {
         process.exit(1);
