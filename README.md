@@ -1,3 +1,6 @@
+![jaldireleasecreative](https://user-images.githubusercontent.com/6417910/40850920-841c5676-65e3-11e8-93a9-5f7be858fd80.png)
+
+
 # jaldi
 
 CLI utility to quickly bootstrap projects. ⚡️
