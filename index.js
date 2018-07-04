@@ -164,7 +164,7 @@ function makeInitialCommit() {
 
     function makeCommit() {
         return new Promise((resolve, reject) => {
-            exec('git c -m "Initial Commit"', (err, stdout, stderr) => {
+            exec('git commit -m "Initial Commit"', (err, stdout, stderr) => {
                 if (err) {
                     console.log("\n😕  Oops. Something went wrong. Please check the error logs below and re-try the command.");
 
