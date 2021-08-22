@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const exec = require('child_process').exec;
 const config = require('./config');
+const platform = require('os').platform();
 console.log()
 
 if (process.argv.length !== 3) {
@@ -10,20 +11,36 @@ if (process.argv.length !== 3) {
 
 const path = process.argv[2];
 
+function isNotInstalled(app) {
+    let command = `which ${app}`;
+    if (platform == 'win32') {
+        command = `where ${app}`;
+    }
+    exec(command, (err, stdout, stderr) => {
+        return Boolean(err)
+    });
+}
+
+function commandToDelete(folder_path) {
+    if (platform === 'win32') {
+        return `rmdir /s /q ${folder_path}`;
+    } else {
+        return `rm -rf ${folder_path}`;
+    }
+}
+
 function checkGit() {
     console.log('🔍  Checking for local git installation');
 
     return new Promise((resolve, reject) => {
-        exec('which git', (err, stdout, stderr) => {
-            if (err) {
-                console.error("😔  Could not find local git installation!");
-                console.log("\nTry installing git or manually downloading the starter repo from https://github.com/abinavseelan/React-Express-Node-Starter.");
-                reject();
-            } else {
-                console.log("🎉  Local git installation found!");
-                resolve();
-            }
-        });
+        if (isNotInstalled('git')) {
+            console.error("😔  Could not find local git installation!");
+            console.log("\nTry installing git or manually downloading the starter repo from https://github.com/abinavseelan/React-Express-Node-Starter.");
+            reject();
+        } else {
+            console.log("🎉  Local git installation found!");
+            resolve();
+        }
     });
 }
 
@@ -31,18 +48,14 @@ function checkNpm() {
     console.log('🔍  Checking for local npm installation');
 
     return new Promise((resolve, reject) => {
-        exec('which npm', (err, stdout, stderr) => {
-            if (err) {
-                console.error("😔  Could not find local npm installation!");
-                console.log("\nTry installing npm or manually downloading the starter repo from https://github.com/abinavseelan/React-Express-Node-Starter.");
-
-                reject();
-            } else {
-                console.log("🎉  Local npm installation found!");
-
-                resolve();
-            }
-        });
+        if (isNotInstalled('npm')) {
+            console.error("😔  Could not find local npm installation!");
+            console.log("\nTry installing npm or manually downloading the starter repo from https://github.com/abinavseelan/React-Express-Node-Starter.");
+            reject();
+        } else {
+            console.log("🎉  Local npm installation found!");
+            resolve();
+        }
     })
 }
 
@@ -78,7 +91,7 @@ function cleanUp() {
 
     function removeGit() {
         return new Promise((resolve, reject) => {
-            exec(`rm -rf ./.git`, (err, stdout, stderr) => {
+            exec(commandToDelete(`"./.git"`), (err, stdout, stderr) => {
                 if (err) {
                     console.log("\n😕  Oops. Something went wrong. Please check the error logs below and re-try the command.");
 
@@ -205,4 +218,3 @@ checkGit()
     .catch(() => {
         process.exit(1);
     });
-
